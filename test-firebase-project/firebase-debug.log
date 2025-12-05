@@ -1,0 +1,58 @@
+[debug] [2025-12-05T02:08:50.089Z] ----------------------------------------------------------------------
+[debug] [2025-12-05T02:08:50.092Z] Command:       D:\nvm4w\nodejs\node.exe D:\nvm4w\nodejs\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2025-12-05T02:08:50.092Z] CLI Version:   14.25.0
+[debug] [2025-12-05T02:08:50.092Z] Platform:      win32
+[debug] [2025-12-05T02:08:50.092Z] Node Version:  v20.19.5
+[debug] [2025-12-05T02:08:50.092Z] Time:          Thu Dec 04 2025 21:08:50 GMT-0500 (Eastern Standard Time)
+[debug] [2025-12-05T02:08:50.093Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-12-05T02:08:50.234Z] Object "/storage" in "firebase.json" has unknown property: {"additionalProperty":"cors"}
+[debug] [2025-12-05T02:08:50.235Z] Field "/storage" in "firebase.json" is possibly invalid: must be array
+[debug] [2025-12-05T02:08:50.235Z] Field "/storage" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-12-05T02:08:50.238Z] Object "/storage" in "firebase.json" has unknown property: {"additionalProperty":"cors"}
+[debug] [2025-12-05T02:08:50.238Z] Field "/storage" in "firebase.json" is possibly invalid: must be array
+[debug] [2025-12-05T02:08:50.238Z] Field "/storage" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Rottman Mendez\rottym\throttleLife
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[debug] [2025-12-05T02:09:34.515Z] ----------------------------------------------------------------------
+[debug] [2025-12-05T02:09:34.517Z] Command:       D:\nvm4w\nodejs\node.exe D:\nvm4w\nodejs\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2025-12-05T02:09:34.517Z] CLI Version:   14.25.0
+[debug] [2025-12-05T02:09:34.517Z] Platform:      win32
+[debug] [2025-12-05T02:09:34.517Z] Node Version:  v20.19.5
+[debug] [2025-12-05T02:09:34.517Z] Time:          Thu Dec 04 2025 21:09:34 GMT-0500 (Eastern Standard Time)
+[debug] [2025-12-05T02:09:34.517Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-12-05T02:09:34.653Z] Object "/storage" in "firebase.json" has unknown property: {"additionalProperty":"cors"}
+[debug] [2025-12-05T02:09:34.654Z] Field "/storage" in "firebase.json" is possibly invalid: must be array
+[debug] [2025-12-05T02:09:34.654Z] Field "/storage" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-12-05T02:09:34.658Z] Object "/storage" in "firebase.json" has unknown property: {"additionalProperty":"cors"}
+[debug] [2025-12-05T02:09:34.658Z] Field "/storage" in "firebase.json" is possibly invalid: must be array
+[debug] [2025-12-05T02:09:34.658Z] Field "/storage" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Rottman Mendez\rottym\throttleLife
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+

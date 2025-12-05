@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "rottym-39224"
-  }
+    "default": "rottym-39224",
+    "prod": "moto-rides-593cb"
+  },
+  "targets": {},
+  "etags": {}
 }
