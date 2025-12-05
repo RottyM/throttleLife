@@ -1,7 +1,7 @@
 'use server';
 
 import { genkit, z } from 'genkit';
-import { googleAI, geminiPro } from '@genkit-ai/googleai';
+import { googleAI, gemini10Pro } from '@genkit-ai/googleai';
 
 // Initialize Genkit
 const ai = genkit({
@@ -18,7 +18,7 @@ const agentFlow = ai.defineFlow(
   async (input) => {
     const { text } = await ai.generate({
       // We switch to geminiPro (1.0) as it has the widest availability
-      model: geminiPro, 
+      model: gemini10Pro, 
       prompt: input,
       system: `You are an expert motorcycle mechanic and safety advisor. 
       Your goal is to help users with repair, maintenance, and safety questions.

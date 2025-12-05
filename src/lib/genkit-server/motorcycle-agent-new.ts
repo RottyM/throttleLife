@@ -1,11 +1,15 @@
 async function callXAI(prompt: string): Promise<string> {
+  const apiKey = process.env.XAI_API_KEY;
+  if (!apiKey) {
+    throw new Error('XAI_API_KEY is not defined in environment variables.');
+  }
   try {
     // Direct API call to xAI (Grok)
     const response = await fetch('https://api.x.ai/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': process.env.XAI_API_KEY,
+        'x-api-key': apiKey,
       },
       body: JSON.stringify({
         model: 'grok', // Use the appropriate model name
