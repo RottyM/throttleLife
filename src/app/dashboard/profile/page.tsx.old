@@ -1,0 +1,351 @@
+
+'use client';
+
+import Image from 'next/image';
+import { userProfile } from '@/lib/data';
+import { placeholderImages as PlaceHolderImages } from '@/lib/placeholder-images.json';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
+import * as Icons from '@/components/icons';
+import { Badge } from '@/components/ui/badge';
+import { Star, MapPin, Palette } from 'lucide-react';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
+import { useState, useEffect } from 'react';
+import { Input } from '@/components/ui/input';
+
+function hexToHsl(hex: string): string {
+  // Remove the hash at the start if it's there
+  hex = hex.replace(/^#/, '');
+
+  // Convert hex to RGB
+  const r = parseInt(hex.substring(0, 2), 16) / 255;
+  const g = parseInt(hex.substring(2, 4), 16) / 255;
+  const b = parseInt(hex.substring(4, 6), 16) / 255;
+
+  // Find min and max values
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+
+  let h = 0,
+    s = 0,
+    l = (max + min) / 2;
+
+  if (max !== min) {
+    const d = max - min;
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    switch (max) {
+      case r:
+        h = (g - b) / d + (g < b ? 6 : 0);
+        break;
+      case g:
+        h = (b - r) / d + 2;
+        break;
+      case b:
+        h = (r - g) / d + 4;
+        break;
+    }
+    h /= 6;
+  }
+
+  h = Math.round(h * 360);
+  s = Math.round(s * 100);
+  l = Math.round(l * 100);
+
+  return `${h} ${s}% ${l}%`;
+}
+
+export default function ProfilePage() {
+  const profileImage = PlaceHolderImages.find(
+    (img) => img.id === userProfile.avatarId
+  );
+  const [isGpsActive, setIsGpsActive] = useState(userProfile.gpsActive);
+  const [clubColors, setClubColors] = useState(userProfile.clubColors);
+
+  useEffect(() => {
+    if (clubColors?.enabled && clubColors.primary) {
+      document.documentElement.style.setProperty(
+        '--user-accent',
+        clubColors.primary
+      );
+    } else {
+      document.documentElement.style.removeProperty('--user-accent');
+    }
+  }, [clubColors]);
+
+  const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const hexColor = e.target.value;
+    const hslColor = hexToHsl(hexColor);
+    setClubColors((prev) =>
+      prev ? { ...prev, primary: hslColor } : { primary: hslColor, enabled: false }
+    );
+  };
+
+  const handleColorToggle = (enabled: boolean) => {
+    setClubColors((prev) =>
+      prev ? { ...prev, enabled } : { primary: '', enabled }
+    );
+  };
+  
+  function hslToHex(hslString: string): string {
+    if (!hslString) return '#000000';
+    const [h, s, l] = hslString.split(' ').map((val, i) => {
+      return i > 0 ? parseInt(val.replace('%', '')) : parseInt(val);
+    });
+
+    const sDecimal = s / 100;
+    const lDecimal = l / 100;
+
+    const c = (1 - Math.abs(2 * lDecimal - 1)) * sDecimal;
+    const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
+    const m = lDecimal - c / 2;
+    let r = 0, g = 0, b = 0;
+
+    if (0 <= h && h < 60) {
+        r = c; g = x; b = 0;
+    } else if (60 <= h && h < 120) {
+        r = x; g = c; b = 0;
+    } else if (120 <= h && h < 180) {
+        r = 0; g = c; b = x;
+    } else if (180 <= h && h < 240) {
+        r = 0; g = x; b = c;
+    } else if (240 <= h && h < 300) {
+        r = x; g = 0; b = c;
+    } else if (300 <= h && h < 360) {
+        r = c; g = 0; b = x;
+    }
+
+    const toHex = (c: number) => {
+        const hex = Math.round((c + m) * 255).toString(16);
+        return hex.length == 1 ? '0' + hex : hex;
+    };
+
+    return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+}
+
+
+  return (
+    <div className="flex-1 space-y-4 p-4 md:p-8">
+      <header>
+        <h1 className="font-headline text-3xl font-bold tracking-tight md:text-4xl">
+          My Profile
+        </h1>
+        <p className="text-muted-foreground">
+          Your personal corner of ThrottleLife.
+        </p>
+      </header>
+      <main className="grid gap-8 lg:grid-cols-3">
+        <div className="space-y-8 lg:col-span-2">
+          <Card className="overflow-hidden">
+            <CardHeader className="items-center p-8 text-center bg-card">
+              <Avatar className="h-24 w-24 border-4 border-background shadow-lg">
+                {profileImage && (
+                  <AvatarImage
+                    src={profileImage.imageUrl}
+                    alt={userProfile.name}
+                    data-ai-hint={profileImage.imageHint}
+                  />
+                )}
+                <AvatarFallback>{userProfile.name.charAt(0)}</AvatarFallback>
+              </Avatar>
+              <CardTitle className="font-headline pt-4 text-3xl">
+                {userProfile.name}
+              </CardTitle>
+              <p className="text-lg text-muted-foreground">{userProfile.bio}</p>
+                 <div className="text-center mt-4">
+                <h3 className="mb-4 text-sm font-semibold uppercase text-muted-foreground">
+                  Follow My Journey
+                </h3>
+                <div className="flex justify-center gap-4">
+                  {userProfile.socials.map((social) => {
+                    const Icon = Icons[social.icon as keyof typeof Icons];
+                    return (
+                      <Button
+                        key={social.name}
+                        variant="outline"
+                        size="icon"
+                        asChild
+                      >
+                        <a
+                          href={social.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Icon className="h-5 w-5" />
+                          <span className="sr-only">{social.name}</span>
+                        </a>
+                      </Button>
+                    );
+                  })}
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent className="p-8">
+               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <div>
+                  <h3 className="mb-2 text-sm font-semibold uppercase text-muted-foreground">
+                    Contact
+                  </h3>
+                  <p>
+                    <span className="font-semibold">Email:</span>{' '}
+                    {userProfile.contactInfo}
+                  </p>
+                  <p>
+                    <span className="font-semibold">Emergency:</span>{' '}
+                    {userProfile.emergencyContact}
+                  </p>
+                </div>
+                <div>
+                  <h3 className="mb-2 text-sm font-semibold uppercase text-muted-foreground">
+                    Club Info
+                  </h3>
+                  <p>
+                    <span className="font-semibold">Club:</span>{' '}
+                    {userProfile.clubName}
+                  </p>
+                  <p>
+                    <span className="font-semibold">Road Name:</span>{' '}
+                    {userProfile.roadName}
+                  </p>
+                   <p>
+                    <span className="font-semibold">Rank:</span>{' '}
+                    {userProfile.rank}
+                  </p>
+                </div>
+              </div>
+              <Separator className="my-8" />
+              <div>
+                <h3 className="mb-6 text-sm font-semibold uppercase text-muted-foreground">
+                  My Garage
+                </h3>
+                <div className="space-y-6">
+                  {userProfile.motorcycles.map((moto) => {
+                    const motoImage = PlaceHolderImages.find(
+                      (img) => img.id === moto.imageId
+                    );
+                    return (
+                      <div key={moto.id} className="flex items-center gap-4">
+                        {motoImage && (
+                          <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-md">
+                            <Image
+                              src={motoImage.imageUrl}
+                              alt={moto.name || `${moto.make} ${moto.model}`}
+                              fill
+                              className="object-cover"
+                              data-ai-hint={motoImage.imageHint}
+                            />
+                          </div>
+                        )}
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <h4 className="font-semibold">
+                              {moto.name || `${moto.make} ${moto.model}`}
+                            </h4>
+                            {moto.isDefault && (
+                              <Badge
+                                variant="secondary"
+                                className="gap-1 pl-1.5 pr-2"
+                              >
+                                <Star className="h-3 w-3" />
+                                Default
+                              </Badge>
+                            )}
+                          </div>
+                          <p className="text-sm text-muted-foreground">
+                            {moto.year} {moto.make} {moto.model}
+                          </p>
+                          <p className="text-sm text-muted-foreground">
+                            {moto.mileage.toLocaleString()} miles
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        <div className="space-y-8">
+          <Card>
+            <CardHeader>
+              <CardTitle className="font-headline">Safety Features</CardTitle>
+              <CardDescription>
+                Manage your location and safety settings.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center justify-between rounded-lg border p-4">
+                <div className="flex items-center space-x-3">
+                  <MapPin className="h-5 w-5 text-muted-foreground" />
+                  <Label htmlFor="gps-active" className="font-semibold">
+                    GPS Active
+                  </Label>
+                </div>
+                <Switch
+                  id="gps-active"
+                  checked={isGpsActive}
+                  onCheckedChange={setIsGpsActive}
+                  aria-label="Toggle GPS tracking"
+                />
+              </div>
+              <p className="mt-2 text-xs text-muted-foreground">
+                When active, the app can track your location and use motion
+                sensors to detect a potential crash.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="font-headline">Club Customization</CardTitle>
+              <CardDescription>
+                Tailor the app&apos;s theme to your club&apos;s colors.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="club-color">Primary Club Color</Label>
+                <div className="relative flex items-center">
+                  <Input
+                    id="club-color"
+                    type="color"
+                    className="h-10 w-12 cursor-pointer p-1"
+                    value={hslToHex(clubColors?.primary || '')}
+                    onChange={handleColorChange}
+                  />
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  Select your club's main color.
+                </p>
+              </div>
+              <div className="flex items-center justify-between rounded-lg border p-4">
+                <div className="flex items-center space-x-3">
+                  <Palette className="h-5 w-5 text-muted-foreground" />
+                  <Label htmlFor="color-toggle" className="font-semibold">
+                    Enable Club Colors
+                  </Label>
+                </div>
+                <Switch
+                  id="color-toggle"
+                  checked={clubColors?.enabled}
+                  onCheckedChange={handleColorToggle}
+                  aria-label="Toggle club colors"
+                />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </main>
+    </div>
+  );
+}

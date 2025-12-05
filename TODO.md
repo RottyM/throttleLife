@@ -1,0 +1,15 @@
+- Enable OAuth providers (Google, GitHub) in Firebase console and verify signInWithPopup.
+- Add FCM setup: request notification permission, obtain device token, and store it alongside device doc.
+- Wire notification sending paths for chat/scheduler to use FCM tokens; test across multiple devices.
+- Add automated tests/checks for login submit via Enter and provider sign-in fallbacks.
+- Review Firestore rules to ensure users/{uid}/devices/* covers notifications/token writes.
+- Expand gallery coverage: add integration tests for uploads, delete, and GIF/image rendering.
+- Gallery scalability: add pagination/infinite scroll and Firestore query limits for large media libraries.
+- Local Jest runner note: Windows dev box hits `spawn EPERM`/missing `npm-prefix.js` when forking workers; run tests in CI (Vercel/Firebase) or adjust local Node/npm path to execute gallery tests.
+- Route incident checker notes:
+  - Use planned route polyline as the source of truth; precompute cumulative distances and a corridor buffer (e.g., 50–150m urban, 250–400m highway) for on-route incident matching.
+  - Preprocess VDOT incidents/closures: snap or test inside corridor; store `routeDistance` for each for cheap “ahead of rider” checks.
+  - Per rider update: snap location to nearest route point, compute distance-to-route and progress; flag off-route after N samples > threshold, and stalled if speed <3–5 mph for 20–30s; mark drop-off at last on-route point.
+  - Alerting: show only on-route incidents ahead of current progress within a look-ahead window (2–3 mi urban, 5–10 mi highway; always include full closures). Filter by bearing window if available.
+  - Map overlay: keep route polyline visible, rider marker, optional dashed line to route when off-route, drop-off marker, and on-route incident markers ordered by distance ahead.
+- Clean-up: strip the legacy VDOT incidents list/HUD from `src/app/dashboard/locations/page.tsx`, remove unused imports/state from that removal, and normalize any leftover corrupted emoji strings.

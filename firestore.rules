@@ -1,0 +1,70 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /club_themes/{clubThemeId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    match /users/{userId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth.uid == userId;
+    }
+
+    match /users/{userId}/{document=**} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    match /gallery/{photoId} {
+      allow read: if true;
+      allow create: if request.auth != null;
+      allow update: if request.auth != null && request.auth.uid == resource.data.userId;
+      allow delete: if request.auth != null && request.auth.uid == resource.data.userId;
+
+      match /comments/{commentId} {
+        allow read, create: if request.auth != null;
+        allow update, delete: if request.auth != null && request.auth.uid == resource.data.userId;
+      }
+    }
+
+    match /time_slots/{timeSlotId} {
+      allow read: if true;
+      allow create: if request.auth != null;
+    }
+
+    match /time_slot_requests/{timeSlotRequestId} {
+        function isSignedIn() {
+            return request.auth != null;
+        }
+
+        // Allow create if the user is signed in and is either the requester or one of the requestees.
+        allow create: if isSignedIn() && (request.resource.data.requestorId == request.auth.uid || request.resource.data.requestedUserIds.hasAny([request.auth.uid]));
+
+        // Allow get if the user is the requester or requestee.
+        allow get: if isSignedIn() && (resource.data.requestorId == request.auth.uid || resource.data.requestedUserIds.hasAny([request.auth.uid]));
+
+        // Allow list if the user is signed in.  Listing requires filtering on the client side.
+        allow list: if isSignedIn();
+    }
+
+    // Added rules for the /locations collection
+    match /locations/{locationId} {
+      allow read: if true; // Public read access for map display
+      allow create: if request.auth != null; // Authenticated users can create locations
+      allow update, delete: if request.auth != null && request.auth.uid == resource.data.userId; // Only the creator can update/delete
+    }
+
+    match /chats/{chatId} {
+      allow read, create: if request.auth != null && request.auth.uid in resource.data.participantIds;
+      allow update: if request.auth != null && request.auth.uid in resource.data.participantIds;
+
+      match /messages/{messageId} {
+        allow read, create: if request.auth != null && get(/databases/$(database)/documents/chats/$(chatId)).data.participantIds.hasAny([request.auth.uid]);
+      }
+    }
+
+    match /news_articles/{articleId} {
+      allow read: if true;
+    }
+  }
+}

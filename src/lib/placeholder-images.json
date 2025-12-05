@@ -1,0 +1,94 @@
+{
+  "placeholderImages": [
+    {
+      "id": "profile-pic",
+      "description": "User profile picture",
+      "imageUrl": "https://images.unsplash.com/photo-1618001814671-5ccfc2697e33?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bWFuJTIwbW90b3JjeWNsZXxlbnwwfHx8fDE3NjI4MjM1NzV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "man motorcycle"
+    },
+    {
+      "id": "motorcycle-1",
+      "description": "Triumph Scrambler 1200 XE",
+      "imageUrl": "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0cml1bXBoJTIwbW90b3JjeWNsc3xlbnwwfHx8fDE3NjI5MDk4ODh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Triumph motorcycle"
+    },
+    {
+      "id": "motorcycle-2",
+      "description": "Ducati Panigale V4 S",
+      "imageUrl": "https://images.unsplash.com/photo-1625005296238-76228383f704?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxkdWNhdGklMjBtb3RvcmN5Y2xlfGVufDB8fHx8MTc2MzkxMDA0N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Ducati motorcycle"
+    },
+    {
+      "id": "news-1",
+      "description": "Electric motorcycle lineup",
+      "imageUrl": "https://images.unsplash.com/photo-1623079397242-c2e809a6ef1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZWxlY3RyaWMlMjBtb3RvcmN5Y2xlfGVufDB8fHx8MTc2Mjc0NzkyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "electric motorcycle"
+    },
+    {
+      "id": "news-2",
+      "description": "Adventure riding gear",
+      "imageUrl": "https://images.unsplash.com/photo-1758550713888-c1a76af44cc8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtb3RvcmN5Y2xlJTIwZ2VhcnxlbnwwfHx8fDE3NjI4MjM1NzV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "motorcycle gear"
+    },
+    {
+      "id": "news-3",
+      "description": "Custom urban scrambler motorcycle",
+      "imageUrl": "https://images.unsplash.com/photo-1760229306350-e6cb85e93977?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y3VzdG9tJTIwbW90b3JjeWNsZXxlbnwwfHx8fDE3NjI4MDgyODZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "custom motorcycle"
+    },
+    {
+      "id": "news-4",
+      "description": "Riding on Route 66",
+      "imageUrl": "https://images.unsplash.com/photo-1632077532902-c1de2815fc3b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtb3RvcmN5Y2xlJTIwZGVzZXJ0fGVufDB8fHx8MTc2MjgyMzU3NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "motorcycle desert"
+    },
+    {
+      "id": "gallery-1",
+      "description": "Sunset ride through the mountains",
+      "imageUrl": "https://images.unsplash.com/photo-1690613142728-0db2f0561da9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtb3RvcmN5Y2xlJTIwc3Vuc2V0fGVufDB8fHx8MTc2Mjc0NzkyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "motorcycle sunset"
+    },
+    {
+      "id": "gallery-2",
+      "description": "Early morning coffee stop with motorcycle",
+      "imageUrl": "https://images.unsplash.com/photo-1642418426553-a1b2a68dbb8d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtb3RvcmN5Y2xlJTIwY2FmZXxlbnwwfHx8fDE3NjI4MjM1NzV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "motorcycle cafe"
+    },
+    {
+      "id": "gallery-3",
+      "description": "Details of a classic motorcycle engine",
+      "imageUrl": "https://images.unsplash.com/photo-1759665996019-c2bdf600b90f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtb3RvcmN5Y2xlJTIwZW5naW5lfGVufDB8fHx8MTc2MjcyODE3OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "motorcycle engine"
+    },
+    {
+      "id": "gallery-4",
+      "description": "Motorcycle on a coastal highway",
+      "imageUrl": "https://images.unsplash.com/photo-1628430603151-6d767cf70f8d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtb3RvcmN5Y2xlJTIwY29hc3R8ZW58MHx8fHwxNzYyNzk4NDIwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "motorcycle coast"
+    },
+    {
+      "id": "gallery-5",
+      "description": "Person working on a motorcycle",
+      "imageUrl": "https://images.unsplash.com/photo-1577801601678-3b379e670f9d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtb3RvcmN5Y2xlJTIwbWFpbnRlbmFuY2V8ZW58MHx8fHwxNzYyODIzNTc1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "motorcycle maintenance"
+    },
+    {
+      "id": "gallery-6",
+      "description": "Group of friends on a motorcycle ride",
+      "imageUrl": "https://images.unsplash.com/photo-1745487382964-182ccc8ad30d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtb3RvcmN5Y2xlJTIwZnJpZW5kc3xlbnwwfHx8fDE3NjI4MjM1NzV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "motorcycle friends"
+    },
+    {
+      "id": "gallery-7",
+      "description": "Motorcycle on a dirt trail in a forest",
+      "imageUrl": "https://images.unsplash.com/photo-1677911408078-feec01e4ebe5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtb3RvcmN5Y2xlJTIwdHJhaWx8ZW58MHx8fHwxNzYyODIzNTc1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "motorcycle trail"
+    },
+    {
+      "id": "gallery-8",
+      "description": "Motorcycle parked in a city at night",
+      "imageUrl": "https://images.unsplash.com/photo-1642367147868-736843c5804c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtb3RvcmN5Y2xlJTIwY2l0eXxlbnwwfHx8fDE3NjI4MjM1NzV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "motorcycle city"
+    }
+  ]
+}
