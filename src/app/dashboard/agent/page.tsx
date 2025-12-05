@@ -33,7 +33,7 @@ export default function AgentPage() {
       const data = await res.json();
       setAnswer(data.answer);
     } catch (error) {
-      setAnswer(`Error: ${error.message}`);
+      setAnswer(`Error: ${(error as Error).message}`);
     } finally {
       setLoading(false);
     }

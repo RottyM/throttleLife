@@ -23,6 +23,11 @@ export function initializeFirebase() {
       if (process.env.NODE_ENV === "production") {
         console.warn('Automatic initialization failed. Falling back to firebase config object.', e);
       }
+
+      // Ensure firebaseConfig is present before calling initializeApp
+      if (!firebaseConfig) {
+        throw new Error('firebaseConfig is required when automatic initialization fails.');
+      }
       firebaseApp = initializeApp(firebaseConfig);
     }
 
