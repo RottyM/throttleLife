@@ -30,20 +30,68 @@ export function GpsStatusToggle({ className }: Props) {
     if (!firestore || !user) return;
 
     setIsUpdating(true);
+    const userRef = doc(firestore, 'users', user.uid);
+
+    // Turning GPS on: get current position and persist coordinates + flag.
+    if (gpsActive) {
+      if (!navigator.geolocation) {
+        toast({
+          title: 'Geolocation not supported',
+          description: "Your browser doesn't support geolocation.",
+          variant: 'destructive',
+        });
+        setIsUpdating(false);
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const { latitude, longitude } = position.coords;
+          try {
+            await updateDoc(userRef, { gpsActive: true, latitude, longitude });
+            setIsGpsActive(true);
+            toast({
+              title: 'GPS Enabled',
+              description: 'Your location is now being shared.',
+            });
+          } catch (error) {
+            console.error('Error updating GPS status:', error);
+            toast({
+              title: 'Update Failed',
+              description: 'Could not update your GPS status.',
+              variant: 'destructive',
+            });
+          } finally {
+            setIsUpdating(false);
+          }
+        },
+        (error) => {
+          toast({
+            title: 'Geolocation Error',
+            description: error.message,
+            variant: 'destructive',
+          });
+          setIsUpdating(false);
+        },
+        { maximumAge: 0 }
+      );
+      return;
+    }
+
+    // Turning GPS off: clear coordinates and flag.
     try {
-      const userRef = doc(firestore, 'users', user.uid);
-      await updateDoc(userRef, { gpsActive });
-      setIsGpsActive(gpsActive);
+      await updateDoc(userRef, { gpsActive: false, latitude: null, longitude: null });
+      setIsGpsActive(false);
       toast({
-        title: `GPS ${gpsActive ? 'Enabled' : 'Disabled'}`,
-        description: `Your location is ${gpsActive ? 'now' : 'no longer'} being shared.`,
+        title: 'GPS Disabled',
+        description: 'Your location is no longer being shared.',
       });
     } catch (error) {
-      console.error("Error updating GPS status:", error);
+      console.error('Error updating GPS status:', error);
       toast({
-        title: "Update Failed",
-        description: "Could not update your GPS status.",
-        variant: "destructive",
+        title: 'Update Failed',
+        description: 'Could not update your GPS status.',
+        variant: 'destructive',
       });
     } finally {
       setIsUpdating(false);
