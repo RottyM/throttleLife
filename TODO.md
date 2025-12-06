@@ -12,4 +12,5 @@
   - Per rider update: snap location to nearest route point, compute distance-to-route and progress; flag off-route after N samples > threshold, and stalled if speed <3–5 mph for 20–30s; mark drop-off at last on-route point.
   - Alerting: show only on-route incidents ahead of current progress within a look-ahead window (2–3 mi urban, 5–10 mi highway; always include full closures). Filter by bearing window if available.
   - Map overlay: keep route polyline visible, rider marker, optional dashed line to route when off-route, drop-off marker, and on-route incident markers ordered by distance ahead.
-- Clean-up: strip the legacy VDOT incidents list/HUD from `src/app/dashboard/locations/page.tsx`, remove unused imports/state from that removal, and normalize any leftover corrupted emoji strings.
+- Clean-up: strip the legacy VDOT incidents list/HUD from `src/app/dashboard/locations/page.tsx`, remove unused imports/state from that removal, and normalize any leftover corrupted emoji strings. (IN PROGRESS)
+- PWA Support: Added next-pwa for mobile app-like experience; manifest.json created, service worker enabled; requires app icons and HTTPS deployment for full functionality.

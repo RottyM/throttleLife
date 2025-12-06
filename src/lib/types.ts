@@ -1,4 +1,3 @@
-
 import { Timestamp } from "firebase/firestore";
 
 export type NewsArticle = {
@@ -160,3 +159,15 @@ export type CalendarEvent = {
   date: Date;
   duration?: string;
 };
+
+export interface TrafficEvent {
+  id: string;
+  latitude: number;
+  longitude: number;
+  description: string;
+  startDate: Date;
+  endDate: Date;
+  category?: string;
+  subcategory?: string;
+  source: 'json' | 'xml';
+}

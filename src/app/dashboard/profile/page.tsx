@@ -220,6 +220,9 @@ function ProfileData() {
             variant: "destructive",
           });
           setIsGpsLoading(false);
+        },
+        {
+            maximumAge: 0,
         }
       );
     } else {
@@ -364,5 +367,3 @@ export default function ProfilePage() {
 
   return <ProfileData />;
 }
-
-    

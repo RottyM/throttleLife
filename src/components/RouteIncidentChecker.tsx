@@ -54,7 +54,7 @@ export const RouteIncidentChecker = ({
   const [routeDistance, setRouteDistance] = useState<string | null>(null);
   const [routeDuration, setRouteDuration] = useState<string | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const checkRouteIncidents = async () => {
     if (!origin.trim() || !destination.trim()) {

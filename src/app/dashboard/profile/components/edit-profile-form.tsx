@@ -38,7 +38,7 @@ const profileSchema = z.object({
   roadName: z.string().optional(),
   aboutMe: z.string().optional(),
   clubName: z.string().optional(),
-  clubChapter: z.string().optional(), // Added Club Chapter
+  clubChapter: z.string().optional(),
   rank: z.string().optional(),
   contactInfo: z.string().min(1, 'Contact phone is required').regex(phoneRegex, 'Invalid phone number format'),
   emergencyContact: z.string().min(1, 'Emergency contact is required').regex(phoneRegex, 'Invalid phone number format'),
@@ -48,6 +48,7 @@ const profileSchema = z.object({
       enabled: z.boolean().optional(),
     })
     .optional(),
+  gpsActive: z.boolean().optional(),
 });
 
 type ProfileFormData = z.infer<typeof profileSchema>;
@@ -194,6 +195,7 @@ export function EditProfileForm({ onSave, initialData }: EditProfileFormProps) {
             primary: '#f97316',
             enabled: false,
         },
+        gpsActive: false,
     }
   });
 
@@ -224,6 +226,7 @@ export function EditProfileForm({ onSave, initialData }: EditProfileFormProps) {
                 primary: '#f97316',
                 enabled: false,
             },
+            gpsActive: false,
         });
     }
   }, [initialData, reset]);
@@ -280,9 +283,6 @@ export function EditProfileForm({ onSave, initialData }: EditProfileFormProps) {
         });
     }
   };
-
-  // Remove the conditional rendering of FormSkeleton
-  // The parent component ProfileData will handle loading state and when to render this form.
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -425,6 +425,20 @@ export function EditProfileForm({ onSave, initialData }: EditProfileFormProps) {
             {errors.contactInfo && (
                 <p className="text-sm text-destructive">{errors.contactInfo.message}</p>
             )}
+          </div>
+          <div className="flex items-center space-x-2">
+            <Controller
+              name="gpsActive"
+              control={control}
+              render={({ field }) => (
+                <Switch
+                  id="gpsActive"
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              )}
+            />
+            <Label htmlFor="gpsActive">Enable GPS</Label>
           </div>
 
           <hr className="border-border" />

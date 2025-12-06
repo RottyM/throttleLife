@@ -25,7 +25,8 @@ if (!admin.apps.length) {
     }
     
     admin.initializeApp({
-      credential: credentials
+      credential: credentials,
+      projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
     });
 
   } catch (e) {
@@ -36,3 +37,5 @@ if (!admin.apps.length) {
 export const db = admin.firestore();
 db.settings({ ignoreUndefinedProperties: true });
 export const auth = admin.auth();
+
+
